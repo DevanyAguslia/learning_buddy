@@ -1,13 +1,16 @@
-# Deploy cadangan: Hugging Face Space (GPU L4) + Vercel
+# Menayangkan Learning Buddy di Hugging Face Space (GPU L4)
 
-Dipakai bila server kampus Pegasus belum siap. Kerjakan **setelah** revisi Qwen lolos uji
-(`deploy/PANDUAN_UJI_REVISI_QWEN.md`).
+Cara utama menayangkan Learning Buddy. Kerjakan setelah tes lolos (`py -m pytest -q tes`)
+dan adapter PJOK/PKN serta `ambang_relevan.json` sudah tersedia (notebook Kaggle, lihat README).
 
 ```
-siswa/guru -> https://<nama>.vercel.app -> https://<akun>-learning-buddy.hf.space (GPU L4)
-                                            program + Qwen + penyandi + reranker + login
-                                            -> database akun di Neon (gratis)
+siswa/guru -> https://devany-learning-buddy.hf.space (GPU L4)
+              program + Qwen + penyandi + reranker + login
+              -> database akun di Neon (gratis)
 ```
+
+Yang dipakai hanya Space. Langkah Vercel (A3 dan Bagian D) adalah cadangan dan **boleh
+dilewati**. Website tetap berjalan penuh tanpa Vercel.
 
 Biaya: GPU L4 $0,80 per jam (±Rp 13 rb), dihitung per menit **selama Space menyala**.
 Rencana pemakaian ±7 jam (uji coba 3 + UAT 2 + sidang 1 + memuat model) ≈ $5,60.
@@ -41,7 +44,7 @@ Jangan ditulis di chat, GitHub, atau dokumen skripsi.
    Program otomatis mengubah awalan `postgresql://` menjadi yang dibutuhkan.
 4. Tabel akun dan riwayat chat dibuat otomatis saat Space pertama menyala.
 
-### A3. Vercel
+### A3. Vercel (cadangan, boleh dilewati)
 Daftar di https://vercel.com dengan akun **GitHub** (paket Hobby, gratis).
 
 ---
@@ -126,7 +129,7 @@ Sesudah itu hapus token dan connection string dari Notepad.
 
 ---
 
-## Bagian D — Alamat Vercel
+## Bagian D — Alamat Vercel (cadangan, tidak dipakai)
 
 1. Pastikan `deploy\vercel\vercel.json` sudah berisi alamat Space Anda (ditulis langkah B2).
 2. Push ke GitHub.
