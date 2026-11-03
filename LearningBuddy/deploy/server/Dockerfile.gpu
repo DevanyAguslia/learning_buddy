@@ -1,0 +1,23 @@
+# Learning Buddy - layanan MODEL (butuh GPU NVIDIA, disarankan VRAM >= 24 GB; minimal 16 GB):
+# Qwen2.5-7B-Instruct 4-bit + adapter per kelas, Qwen3-Embedding-4B + FAISS, bge-reranker-v2-m3,
+# dan empat agen. Hanya melayani server web (dilindungi TB_KUNCI), tanpa login.
+# Butuh NVIDIA Container Toolkit di server.  Dibangun dari folder LearningBuddy:
+#   docker compose -f deploy/server/docker-compose.gpu.yml --env-file deploy/server/.env.gpu up -d --build
+FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 \
+    HF_HOME=/hf_cache
+WORKDIR /app
+
+COPY requirements.txt requirements-gpu.txt ./
+# transformers >= 4.51 dibutuhkan Qwen3-Embedding. Bila ada bentrok versi, samakan dengan
+# versi yang dicetak sel "Pasang pustaka" di notebook Kaggle (yang sudah terbukti jalan).
+RUN pip install -r requirements.txt -r requirements-gpu.txt "transformers>=4.51"
+
+COPY tb/ tb/
+COPY web/ web/
+COPY data/ data/
+COPY deploy/server/mulai_gpu.sh mulai_gpu.sh
+
+EXPOSE 8000
+CMD ["bash", "mulai_gpu.sh"]

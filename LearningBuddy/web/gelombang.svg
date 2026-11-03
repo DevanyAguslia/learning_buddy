@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" preserveAspectRatio="none">
+  <!-- Gelombang lembut oranye. Lebar 1440 = satu periode, jadi bisa diulang tanpa sambungan. -->
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7b267" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#f7b267" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4a259" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#f4a259" stop-opacity=".04"/>
+    </linearGradient>
+    <linearGradient id="c" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#f9c784" stop-opacity=".40"/>
+      <stop offset="1" stop-color="#f9c784" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- gelombang atas -->
+  <path d="M0 150 C180 90 540 90 720 150 S1260 210 1440 150 L1440 0 L0 0 Z" fill="url(#c)"/>
+  <!-- gelombang bawah, tiga lapis -->
+  <path d="M0 560 C180 500 540 500 720 560 S1260 620 1440 560 L1440 900 L0 900 Z" fill="url(#a)"/>
+  <path d="M0 660 C180 720 540 720 720 660 S1260 600 1440 660 L1440 900 L0 900 Z" fill="url(#b)"/>
+  <path d="M0 770 C180 730 540 730 720 770 S1260 810 1440 770 L1440 900 L0 900 Z" fill="url(#a)"/>
+</svg>

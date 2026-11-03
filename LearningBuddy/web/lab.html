@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab Keterbacaan</title>
+  <meta name="description" content="Uji rumus keterbacaan, evaluasi alat ukur, dan pengujian sistem Learning Buddy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="gaya.css">
+  <link rel="stylesheet" href="lab.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e6a800'/%3E%3Ctext x='32' y='42' font-family='Georgia' font-size='28' font-weight='700' text-anchor='middle' fill='%235a4200'%3ETB%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="halaman">
+    <header class="kartu kepala">
+      <div class="merek">
+        <div class="logo" aria-hidden="true">LB</div>
+        <div>
+          <h1>Lab Keterbacaan</h1>
+          <p class="sublabel">Learning Buddy · ruang uji</p>
+        </div>
+      </div>
+      <nav class="navigasi" aria-label="Halaman">
+        <a href="index.html">Chat</a>
+        <a href="lab.html" aria-current="page">Lab</a>
+        <span class="akun-saya" id="akun-saya" hidden><span aria-hidden="true">👋</span><span class="nama" id="nama-saya"></span><span class="peran" id="peran-saya"></span>
+          <button class="tombol-kecil" id="tombol-keluar" type="button">Keluar</button></span>
+      </nav>
+    </header>
+
+    <div class="pita" id="pita" hidden></div>
+
+    <div class="tab-tab" role="tablist" aria-label="Bagian lab">
+      <button role="tab" id="tab-ukur" aria-controls="panel-ukur" aria-selected="true">Ukur teks</button>
+      <button role="tab" id="tab-buku" aria-controls="panel-buku" aria-selected="false">Buku sekolah</button>
+      <!-- khusus peneliti; ditampilkan lab.js setelah peran dicek -->
+      <button role="tab" id="tab-evaluasi" aria-controls="panel-evaluasi" aria-selected="false" hidden>Evaluasi rumus</button>
+      <button role="tab" id="tab-uji" aria-controls="panel-uji" aria-selected="false" hidden>Uji sistem</button>
+    </div>
+
+    <!-- ============================ UKUR TEKS ============================ -->
+    <section id="panel-ukur" role="tabpanel" aria-labelledby="tab-ukur" class="panel-tab">
+      <div class="lab-grid">
+        <div class="kartu panel">
+          <h2 class="sublabel">Teks yang diukur</h2>
+          <div class="baris-kendali">
+            <div class="pengalih kecil" role="radiogroup" aria-label="Mata pelajaran" id="ukur-mapel">
+              <button type="button" role="radio" aria-checked="true" data-mapel="PJOK">PJOK</button>
+              <button type="button" role="radio" aria-checked="false" data-mapel="PKN">Pancasila</button>
+            </div>
+            <label class="isian-kecil">Kelas sasaran
+              <select id="ukur-kelas">
+                <option value="">-</option><option>1</option><option>2</option><option selected>3</option>
+                <option>4</option><option>5</option><option>6</option>
+              </select>
+            </label>
+          </div>
+          <textarea id="ukur-teks" class="teks-besar" rows="7">Salah satu bentuk latihan yang dapat dilakukan untuk meningkatkan kemampuan kelentukan dan kelenturan tubuh adalah berlunjur sambil mencium lutut.</textarea>
+          <div class="contoh-baris" id="ukur-contoh"></div>
+          <div id="ukur-periksa" class="periksa"></div>
+          <h3 class="sublabel jarak-atas">Sorotan per kalimat</h3>
+          <div class="legenda-teks">
+            <span><mark class="luar">kata</mark> di luar daftar kata dasar</span>
+            <span><span class="kompleks">kata</span> tiga suku kata atau lebih</span>
+          </div>
+          <div id="ukur-sorot" class="sorotan"></div>
+        </div>
+        <div class="kartu panel">
+          <h2 class="sublabel">Lima alat ukur</h2>
+          <p class="catatan-kecil"><b>PKR</b> dan <b>KLD</b> adalah <b>kendali</b>: dipakai Reflect Agent untuk memutuskan jawaban lolos atau ditulis ulang. <b>Grafik Fry</b>, <b>Dale-Chall</b>, dan <b>Gunning Fog</b> adalah <b>pembanding</b>: hanya dilaporkan. Konstanta ketiga pembanding dibuat untuk bahasa Inggris, jadi angkanya bukan kelas SD; kolom <b>setara kelas</b> memetakan nilai ke buku tingkat kelas yang nilainya paling dekat.</p>
+          <div class="tabel-bungkus"><table class="tabel" id="ukur-tabel"></table></div>
+          <details class="hitungan"><summary>Hitungan dasar</summary><div id="ukur-hitungan" class="mono"></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================== BUKU SEKOLAH ========================== -->
+    <section id="panel-buku" role="tabpanel" aria-labelledby="tab-buku" class="panel-tab" hidden>
+      <div class="lab-grid">
+        <div class="kartu panel">
+          <h2 class="sublabel">Sekolah</h2>
+          <div id="buku-sekolah" class="sekolah-info"></div>
+          <p class="catatan-kecil">Buku Kemendikbud tetap menjadi acuan bersama semua sekolah. Buku yang diunggah di sini
+            menambah sumber jawaban khusus untuk siswa sekolah ini, pada mata pelajaran dan kelas yang sama.</p>
+        </div>
+        <div class="kartu panel">
+          <h2 class="sublabel">Unggah buku (PDF)</h2>
+          <form id="form-buku" class="form-uji">
+            <label class="isian-kecil">Berkas PDF
+              <input type="file" id="buku-berkas" accept="application/pdf,.pdf" required></label>
+            <label class="isian-kecil">Judul buku
+              <input id="buku-judul" maxlength="200" required placeholder="mis. PJOK untuk SD/MI Kelas IV"></label>
+            <label class="isian-kecil">Penerbit
+              <input id="buku-penerbit" maxlength="120" placeholder="mis. Yudistira"></label>
+            <div class="baris-kendali">
+              <label class="isian-kecil">Mata pelajaran
+                <select id="buku-mapel"><option value="PJOK">PJOK</option><option value="PKN">Pancasila</option></select></label>
+              <label class="isian-kecil">Kelas
+                <select id="buku-kelas"><option>1</option><option>2</option><option>3</option>
+                  <option>4</option><option>5</option><option>6</option></select></label>
+            </div>
+            <div class="tombol-baris"><button type="submit" class="tombol-tanya" id="buku-kirim">Unggah</button></div>
+            <p class="catatan-kecil" id="buku-pesan">PDF harus berisi teks (bukan foto hasil scan). Setelah diunggah, buku
+              dipotong dan diindeks otomatis; buku tebal butuh beberapa menit.</p>
+          </form>
+        </div>
+      </div>
+      <div class="kartu panel">
+        <h2 class="sublabel">Buku sekolah ini</h2>
+        <div class="tabel-bungkus"><table class="tabel" id="buku-tabel"></table></div>
+      </div>
+    </section>
+
+    <!-- ========================= EVALUASI RUMUS ========================= -->
+    <section id="panel-evaluasi" role="tabpanel" aria-labelledby="tab-evaluasi" class="panel-tab" hidden>
+      <div class="kartu panel">
+        <div class="kepala-panel">
+          <div>
+            <h2 class="judul-grafik">Seberapa kuat setiap rumus mengikuti tingkat kelas?</h2>
+            <p class="catatan-kecil" id="eval-keterangan"></p>
+          </div>
+          <div class="baris-kendali">
+            <label class="isian-kecil">Tingkat
+              <select id="eval-tingkat">
+                <option value="halaman" selected>Halaman buku (uji)</option>
+                <option value="buku">Buku (n = 6)</option>
+                <option value="jawaban">Kunci jawaban (uji)</option>
+              </select>
+            </label>
+            <label class="isian-kecil">Ukuran
+              <select id="eval-ukuran">
+                <option value="rho" selected>Spearman rho</option>
+                <option value="tepat">Ketepatan tingkat kelas</option>
+                <option value="tepat_1">Ketepatan +-1 tingkat kelas</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="legenda" id="eval-legenda"></div>
+        <div id="eval-grafik" class="grafik"></div>
+        <details class="tabel-lihat"><summary>Lihat sebagai tabel</summary><div class="tabel-bungkus"><table class="tabel" id="eval-tabel"></table></div></details>
+      </div>
+      <div class="lab-grid">
+        <div class="kartu panel">
+          <div class="kepala-panel">
+            <h2 class="judul-grafik">Sebaran nilai per tingkat kelas (halaman uji)</h2>
+            <label class="isian-kecil">Rumus <select id="eval-rumus"></select></label>
+          </div>
+          <p class="catatan-kecil">Garis: rentang kuartil 25-75%. Titik: median. Alat ukur yang baik naik terus dari kelas 1 ke kelas 6 dengan rentang yang tidak saling menutupi.</p>
+          <div class="kembar" id="eval-sebaran"></div>
+        </div>
+        <div class="kartu panel">
+          <div class="kepala-panel">
+            <h2 class="judul-grafik">Tebakan tingkat kelas lawan tingkat kelas buku</h2>
+            <div class="pengalih kecil" role="radiogroup" aria-label="Mata pelajaran" id="eval-mapel">
+              <button type="button" role="radio" aria-checked="true" data-mapel="PJOK">PJOK</button>
+              <button type="button" role="radio" aria-checked="false" data-mapel="PKN">Pancasila</button>
+            </div>
+          </div>
+          <p class="catatan-kecil">Setiap halaman uji ditebak tingkat kelasnya dari nilai rumus. Diagonal = tebakan tepat.</p>
+          <div id="eval-konfusi" class="konfusi"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== UJI SISTEM =========================== -->
+    <section id="panel-uji" role="tabpanel" aria-labelledby="tab-uji" class="panel-tab" hidden>
+      <div class="lab-grid uji-grid">
+        <div class="kartu panel">
+          <h2 class="sublabel">Pengujian atas data uji kanonik</h2>
+          <div id="uji-server" class="info-server"></div>
+          <form id="uji-form" class="form-uji">
+            <label class="isian-kecil">Mata pelajaran
+              <select id="uji-mapel"><option value="PJOK">PJOK (197 soal uji)</option><option value="PKN">Pancasila (158 soal uji)</option></select>
+            </label>
+            <label class="isian-kecil">Soal per tingkat kelas
+              <select id="uji-n"><option value="2">2 (cepat)</option><option value="5" selected>5</option><option value="10">10</option><option value="0">semua</option></select>
+            </label>
+            <fieldset class="isian-kecil"><legend>Skenario</legend>
+              <label><input type="checkbox" value="S1" checked> S1 (model dasar: tanpa latihan per tingkat kelas, tanpa buku) · di chat "⚡ Jawab Cepat"</label>
+              <label><input type="checkbox" value="S2" checked> S2 (adapter: dilatih per tingkat kelas, tanpa buku) · di chat "🎒 Sesuai Kelasku"</label>
+              <label><input type="checkbox" value="S3" checked> S3 (konteks: membaca buku, tanpa latihan per tingkat kelas) · di chat "📖 Lihat Buku"</label>
+              <label><input type="checkbox" value="S4" checked> S4 (gabungan: dilatih per tingkat kelas + membaca buku) · di chat "⭐ Paling Lengkap"</label>
+            </fieldset>
+            <label class="isian-kecil">Tingkat kelas penanya
+              <select id="uji-kelas-dari"><option value="data">dari label data</option><option value="plan">ditebak Plan Agent</option></select>
+            </label>
+            <div class="tombol-baris">
+              <button type="submit" class="tombol-tanya" id="uji-mulai">Mulai uji</button>
+              <button type="button" class="tombol-kecil" id="uji-henti">Hentikan</button>
+            </div>
+          </form>
+          <div class="kemajuan" id="uji-kemajuan" hidden>
+            <div class="batang"><div class="isi-batang" id="uji-batang"></div></div>
+            <div class="mono kecil" id="uji-pesan"></div>
+          </div>
+          <h3 class="sublabel jarak-atas">Riwayat hasil</h3>
+          <ul id="uji-riwayat" class="riwayat"></ul>
+        </div>
+        <div class="kartu panel">
+          <h2 class="judul-grafik" id="uji-judul">Capaian per skenario (S1–S4)</h2>
+          <p class="catatan-kecil" id="uji-catatan">Belum ada hasil. Jalankan pengujian di sebelah kiri.</p>
+          <div class="tabel-bungkus"><table class="tabel" id="uji-tabel"></table></div>
+          <h3 class="judul-grafik kecil jarak-atas">Kepatuhan keterbacaan per tingkat kelas</h3>
+          <div class="legenda" id="uji-legenda"></div>
+          <div id="uji-grafik" class="grafik"></div>
+          <h3 class="sublabel jarak-atas">Contoh jawaban terakhir</h3>
+          <div id="uji-contoh" class="contoh-jawab"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="tooltip" id="tooltip" role="status" hidden></div>
+  <script src="lab.js"></script>
+</body>
+</html>

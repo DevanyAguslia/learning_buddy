@@ -1,0 +1,7 @@
+# Kaggle / server GPU (jalur penelitian). Dipasang di atas requirements.txt.
+# peft dipatok ke versi yang menyimpan adapter jenjang (adapter_config.json: 0.19.1).
+peft==0.19.1
+bitsandbytes>=0.45
+accelerate>=1.0
+sentence-transformers>=4.0
+faiss-cpu>=1.8

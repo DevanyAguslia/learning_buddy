@@ -1,0 +1,62 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "1. Server tiruan (cepat, tanpa model)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "D:/tbenv/Scripts/python.exe",
+      "module": "tb.server",
+      "args": ["--tiruan", "--port", "8000"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "2. Server Qwen kecil di CPU (model sungguhan, lambat)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "D:/tbenv/Scripts/python.exe",
+      "module": "tb.server",
+      "args": ["--qwen", "--model-dasar", "Qwen/Qwen2.5-0.5B-Instruct",
+               "--adapter-pjok", "adapters_kecil/PJOK/grade_{k}",
+               "--adapter-pkn", "adapters_kecil/PKN/grade_{k}",
+               "--cari", "semantik", "--port", "8000"],
+      "env": {
+        "HF_HOME": "D:/hf_cache",
+        "TB_MODEL_EMBEDDING": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "TB_MODEL_RERANKER": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+        "TB_FAISS": "${workspaceFolder}/data/faiss"
+      },
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "3. Gerbang ke GPU Kaggle (model penelitian)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "D:/tbenv/Scripts/python.exe",
+      "module": "tb.server",
+      "args": ["--remote", "${input:urlKaggle}", "--remote-kunci", "${input:kunciKaggle}", "--port", "8000"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Evaluasi rumus keterbacaan",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "D:/tbenv/Scripts/python.exe",
+      "module": "tb.evaluasi_rumus",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Semua tes",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "D:/tbenv/Scripts/python.exe",
+      "module": "pytest",
+      "args": ["-q", "tes"],
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {"id": "urlKaggle", "type": "promptString", "description": "URL https://...trycloudflare.com dari sel 'Buka ke internet' notebook kaggle_server"},
+    {"id": "kunciKaggle", "type": "promptString", "description": "Isi secret TB_KUNCI (kosongkan bila tidak ada)", "password": true}
+  ]
+}

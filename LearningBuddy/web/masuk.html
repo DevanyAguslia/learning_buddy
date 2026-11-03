@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk · Learning Buddy</title>
+  <meta name="description" content="Masuk atau daftar ke Learning Buddy, teman belajar siswa SD.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="gaya.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e6a800'/%3E%3Ctext x='32' y='42' font-family='Georgia' font-size='28' font-weight='700' text-anchor='middle' fill='%235a4200'%3ELB%3C/text%3E%3C/svg%3E">
+</head>
+<body class="badan-masuk">
+  <main class="kartu kotak-masuk">
+    <div class="merek merek-masuk">
+      <div class="logo" aria-hidden="true">LB</div>
+      <div>
+        <h1>Learning Buddy</h1>
+        <p class="sublabel">Teman belajar siswa SD</p>
+      </div>
+    </div>
+
+    <div class="pengalih tab-masuk" role="tablist" aria-label="Masuk atau daftar">
+      <button type="button" role="tab" id="tab-masuk" aria-selected="true" aria-controls="form-masuk">Masuk</button>
+      <button type="button" role="tab" id="tab-daftar" aria-selected="false" aria-controls="form-daftar">Daftar</button>
+    </div>
+
+    <div class="pita" id="pesan-masuk" role="alert" hidden></div>
+
+    <form id="form-masuk" class="form-masuk" role="tabpanel" aria-labelledby="tab-masuk">
+      <label>Username atau email
+        <input id="masuk-identitas" autocomplete="username" required maxlength="200" placeholder="contoh: budi atau budi@email.com">
+      </label>
+      <label>Password
+        <input id="masuk-password" type="password" autocomplete="current-password" required maxlength="200">
+      </label>
+      <button type="submit" class="tombol-tanya">Masuk</button>
+      <p class="kecil-tengah">Belum punya akun? <button type="button" class="tautan" data-ke="daftar">Daftar di sini</button></p>
+    </form>
+
+    <form id="form-daftar" class="form-masuk" role="tabpanel" aria-labelledby="tab-daftar" hidden>
+      <fieldset class="pilih-peran">
+        <legend>Kamu siapa?</legend>
+        <label class="kartu-peran"><input type="radio" name="peran" value="siswa" required>
+          <span class="ikon-peran" aria-hidden="true">🎒</span><span>Siswa/Siswi SD</span></label>
+        <label class="kartu-peran"><input type="radio" name="peran" value="guru">
+          <span class="ikon-peran" aria-hidden="true">🧑‍🏫</span><span>Guru</span></label>
+        <label class="kartu-peran"><input type="radio" name="peran" value="peneliti">
+          <span class="ikon-peran" aria-hidden="true">🔬</span><span>Peneliti</span></label>
+      </fieldset>
+      <label>Username
+        <input id="daftar-username" autocomplete="username" required minlength="3" maxlength="30" pattern="[A-Za-z0-9_.]{3,30}"
+               placeholder="huruf, angka, titik, atau garis bawah">
+      </label>
+      <label>Email
+        <input id="daftar-email" type="email" autocomplete="email" required maxlength="200">
+      </label>
+      <label>Password
+        <input id="daftar-password" type="password" autocomplete="new-password" required minlength="8" maxlength="200"
+               placeholder="paling sedikit 8 karakter">
+      </label>
+      <label>Kode sekolah <span class="opsional">(dari guru, boleh dikosongkan)</span>
+        <input id="daftar-kode-sekolah" maxlength="12" autocapitalize="characters" autocomplete="off"
+               placeholder="contoh: K7H2QD">
+      </label>
+      <label id="isian-kode-peran" hidden>Kode pendaftaran guru/peneliti
+        <input id="daftar-kode-peran" type="password" maxlength="200" autocomplete="off"
+               placeholder="diberikan oleh peneliti">
+      </label>
+      <button type="submit" class="tombol-tanya">Daftar dan masuk</button>
+      <p class="kecil-tengah">Sudah punya akun? <button type="button" class="tautan" data-ke="masuk">Masuk di sini</button></p>
+    </form>
+  </main>
+  <script src="masuk.js"></script>
+</body>
+</html>

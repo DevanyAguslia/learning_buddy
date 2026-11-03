@@ -1,0 +1,38 @@
+# Rahasia
+.env
+*.local.sql
+**/.env
+**/.env.web
+**/.env.gpu
+
+# Python & editor
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Paket unggahan Kaggle & hasil turunan (bisa dibuat ulang)
+**/dist/
+LearningBuddy/log/
+LearningBuddy/adapters_kecil/_tmp/
+LearningBuddy/data/faiss/
+LearningBuddy/data/chroma_kecil/
+LearningBuddy/data/akar_cache.json
+Eksperimen_Chunking/data/akar_cache.json
+Eksperimen_Chunking/eksperimen/hasil/merdeka/**/vektor/
+Eksperimen_Chunking/eksperimen/hasil/merdeka/**/potongan/
+Eksperimen_Chunking/eksperimen/hasil/merdeka/**/evaluasi/
+Eksperimen_Chunking/eksperimen/hasil/potongan/
+Eksperimen_Chunking/eksperimen/hasil/campuran/**/vektor/
+Eksperimen_Chunking/eksperimen/hasil/campuran/**/potongan/
+
+# Berkas besar / buku
+*.pdf
+*.zip
+*.npy
+*.safetensors
+*.bin
+*.local.txt
+
+# Buku unggahan guru (PDF, potongan, vektor) milik sekolah: jangan di-commit
+**/data/buku_sekolah/

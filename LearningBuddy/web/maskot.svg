@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Burung hantu Learning Buddy">
+  <!-- kaki -->
+  <g fill="#f29a2e">
+    <ellipse cx="49" cy="111" rx="7" ry="3.5"/>
+    <ellipse cx="71" cy="111" rx="7" ry="3.5"/>
+  </g>
+  <!-- badan -->
+  <ellipse cx="60" cy="70" rx="35" ry="40" fill="#a0703f"/>
+  <ellipse cx="60" cy="82" rx="24" ry="26" fill="#f7e4c1"/>
+  <g fill="none" stroke="#e2c79a" stroke-width="2" stroke-linecap="round">
+    <path d="M50 78 q3 3 6 0"/><path d="M62 78 q3 3 6 0"/>
+    <path d="M45 87 q3 3 6 0"/><path d="M56 87 q3 3 6 0"/><path d="M67 87 q3 3 6 0"/>
+  </g>
+  <!-- mata -->
+  <circle cx="45" cy="57" r="14" fill="#fff" stroke="#f3c33b" stroke-width="4"/>
+  <circle cx="75" cy="57" r="14" fill="#fff" stroke="#f3c33b" stroke-width="4"/>
+  <circle cx="47" cy="58" r="6" fill="#2b2118"/>
+  <circle cx="73" cy="58" r="6" fill="#2b2118"/>
+  <circle cx="49" cy="55.5" r="2" fill="#fff"/>
+  <circle cx="75" cy="55.5" r="2" fill="#fff"/>
+  <!-- pipi dan paruh -->
+  <circle cx="34" cy="70" r="4" fill="#f5a3a3" opacity=".7"/>
+  <circle cx="86" cy="70" r="4" fill="#f5a3a3" opacity=".7"/>
+  <path d="M55 66 L65 66 L60 74 Z" fill="#f29a2e"/>
+  <!-- topi wisuda -->
+  <path d="M38 33 Q60 41 82 33 L82 41 Q60 49 38 41 Z" fill="#3b3350"/>
+  <path d="M24 28 L60 14 L96 28 L60 42 Z" fill="#4a4163"/>
+  <path d="M60 28 L88 35" stroke="#f3c33b" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M88 35 L88 46" stroke="#f3c33b" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M85 46 L91 46 L90 52 L86 52 Z" fill="#f3c33b"/>
+  <circle cx="60" cy="28" r="3" fill="#f3c33b"/>
+  <!-- pensil di sayap kanan -->
+  <g transform="translate(6 12) rotate(-28 95 82)">
+    <rect x="89" y="62" width="11" height="34" rx="2" fill="#ffd34d" stroke="#e0a91f" stroke-width="1.5"/>
+    <rect x="89" y="58" width="11" height="6" rx="2" fill="#f49ac1"/>
+    <rect x="89" y="63" width="11" height="3" fill="#c9c9c9"/>
+    <path d="M89 96 L100 96 L94.5 106 Z" fill="#f7deb0"/>
+    <path d="M92.6 102.5 L96.4 102.5 L94.5 106 Z" fill="#2b2118"/>
+  </g>
+  <!-- buku terbuka -->
+  <path d="M60 96 Q46 89 30 92 L30 110 Q46 107 60 113 Z" fill="#fff" stroke="#4f8fd6" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M60 96 Q74 89 90 92 L90 110 Q74 107 60 113 Z" fill="#fff" stroke="#e65f5f" stroke-width="3" stroke-linejoin="round"/>
+  <g stroke="#c9d6e6" stroke-width="1.6" stroke-linecap="round">
+    <path d="M36 98 L54 100"/><path d="M36 103 L54 105"/>
+    <path d="M66 100 L84 98"/><path d="M66 105 L84 103"/>
+  </g>
+  <!-- sayap memegang buku -->
+  <ellipse cx="27" cy="94" rx="9" ry="13" fill="#8a5d33" transform="rotate(20 27 94)"/>
+  <ellipse cx="93" cy="94" rx="9" ry="13" fill="#8a5d33" transform="rotate(-20 93 94)"/>
+</svg>

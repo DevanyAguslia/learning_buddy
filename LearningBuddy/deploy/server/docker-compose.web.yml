@@ -1,0 +1,41 @@
+# Server WEB Learning Buddy: website + PostgreSQL.
+#   cp deploy/server/.env.web.contoh deploy/server/.env.web   (lalu isi)
+#   docker compose -f deploy/server/docker-compose.web.yml --env-file deploy/server/.env.web up -d --build
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: learningbuddy
+      POSTGRES_USER: learningbuddy
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?isi DB_PASSWORD di .env.web}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U learningbuddy -d learningbuddy"]
+      interval: 5s
+      retries: 20
+
+  web:
+    build:
+      context: ../..
+      dockerfile: deploy/server/Dockerfile.web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      TB_DATABASE_URL: postgresql+psycopg://learningbuddy:${DB_PASSWORD}@db:5432/learningbuddy
+      TB_REMOTE: ${TB_REMOTE:?isi TB_REMOTE (alamat layanan model) di .env.web}
+      TB_REMOTE_KUNCI: ${TB_KUNCI:?isi TB_KUNCI di .env.web}
+      TB_FORWARDED_IPS: "*"
+    ports:
+      - "${WEB_PORT:-8000}:8000"
+    volumes:
+      - hasil_uji:/app/hasil/uji
+      - log_web:/app/log
+
+volumes:
+  pgdata:
+  hasil_uji:
+  log_web:

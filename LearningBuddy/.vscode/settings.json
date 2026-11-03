@@ -1,0 +1,30 @@
+{
+  "python.defaultInterpreterPath": "D:\\tbenv\\Scripts\\python.exe",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["tes"],
+  "sqltools.connections": [
+    {
+      "name": "Learning Buddy (PostgreSQL lokal)",
+      "driver": "PostgreSQL",
+      "server": "127.0.0.1",
+      "port": 5433,
+      "database": "learningbuddy",
+      "username": "learningbuddy",
+      "askForPassword": true
+    }
+  ],
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "dist": true,
+    "adapters_kecil/_tmp": true
+  },
+  "search.exclude": {
+    "eksperimen/hasil": true,
+    "eksperimen/soal/teks": true,
+    "eksperimen/soal/teks_campuran": true,
+    "data/faiss": true,
+    "data/chroma_kecil": true,
+    "log": true
+  }
+}

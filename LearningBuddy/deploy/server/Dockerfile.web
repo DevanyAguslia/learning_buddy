@@ -1,0 +1,22 @@
+# Learning Buddy - server WEB (tanpa GPU): halaman chat, Lab keterbacaan, akun, riwayat chat.
+# Pertanyaan diteruskan ke layanan MODEL di server GPU (mode gerbang, TB_REMOTE).
+# Dibangun dari folder LearningBuddy:  docker compose -f deploy/server/docker-compose.web.yml up -d --build
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY tb/ tb/
+COPY web/ web/
+COPY data/ data/
+COPY hasil/evaluasi_rumus.json hasil/evaluasi_rumus.json
+
+RUN useradd --create-home lb && mkdir -p log hasil/uji && chown -R lb /app
+USER lb
+
+EXPOSE 8000
+# TB_REMOTE, TB_REMOTE_KUNCI, TB_DATABASE_URL, TB_FORWARDED_IPS dibaca dari lingkungan
+CMD ["python", "-m", "tb.server", "--host", "0.0.0.0", "--port", "8000"]

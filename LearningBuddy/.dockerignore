@@ -1,0 +1,23 @@
+# Rahasia dan berkas lokal: jangan pernah masuk image
+.env
+**/.env
+*.local.*
+akun_uji.local.txt
+
+# Hasil turunan dan berkas besar (dibangun ulang atau dipasang sebagai volume)
+dist/
+log/
+adapters/
+adapters_kecil/
+data/faiss/
+data/chroma_kecil/
+hasil/uji/
+hasil/kaggle_server_*/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+.vscode/
+tes/
+*.pdf
+*.zip
+*.ipynb

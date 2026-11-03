@@ -1,0 +1,32 @@
+# Layanan MODEL Learning Buddy di server GPU Linux (NVIDIA Container Toolkit).
+#   cp deploy/server/.env.gpu.contoh deploy/server/.env.gpu   (lalu isi)
+#   docker compose -f deploy/server/docker-compose.gpu.yml --env-file deploy/server/.env.gpu up -d --build
+services:
+  model:
+    build:
+      context: ../..
+      dockerfile: deploy/server/Dockerfile.gpu
+    restart: unless-stopped
+    environment:
+      TB_KUNCI: ${TB_KUNCI:?isi TB_KUNCI di .env.gpu}
+      HF_TOKEN: ${HF_TOKEN:-}
+    ports:
+      - "${MODEL_PORT:-8000}:8000"
+    volumes:
+      - ${FOLDER_ADAPTER:?isi FOLDER_ADAPTER di .env.gpu}:/adapters:ro
+      - ${FOLDER_HASIL:?isi FOLDER_HASIL di .env.gpu}:/hasil:ro
+      - hf_cache:/hf_cache          # model HuggingFace (~20 GB), diunduh sekali
+      - faiss:/app/data/faiss       # indeks FAISS, dibangun sekali
+      - log_model:/app/log          # jejak setiap pertanyaan
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  hf_cache:
+  faiss:
+  log_model:
